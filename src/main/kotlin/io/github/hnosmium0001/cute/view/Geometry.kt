@@ -6,10 +6,10 @@ class Point(
 )
 
 class Rect2D(
-    var x1: Int,
-    var y1: Int,
-    var width: Int,
-    var height: Int
+    var x1: Int = 0,
+    var y1: Int = 0,
+    var width: Int = 0,
+    var height: Int = 0
 ) {
     var x2: Int
         get() = x1 + width
@@ -23,10 +23,14 @@ class Rect2D(
         }
 
     fun contains(point: Point): Boolean {
-        return point.x >= x1 &&
-            point.y >= y1 &&
-            point.x <= x2 &&
-            point.y <= y2
+        return contains(point.x, point.y)
+    }
+
+    fun contains(x: Int, y: Int): Boolean {
+        return x >= x1 &&
+            y >= y1 &&
+            x <= x2 &&
+            y <= y2
     }
 
     companion object {

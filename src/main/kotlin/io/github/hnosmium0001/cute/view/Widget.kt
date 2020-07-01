@@ -1,9 +1,13 @@
 package io.github.hnosmium0001.cute.view
 
+import io.github.hnosmium0001.cute.view.render.RedrawContext
+import io.github.hnosmium0001.cute.view.render.RepaintContext
+import io.github.hnosmium0001.cute.view.event.UserInputEvent
+
 interface Widget {
     var x1: Int
-    var x2: Int
     var y1: Int
+    var x2: Int
     var y2: Int
 
     var width: Int
@@ -11,12 +15,21 @@ interface Widget {
 
     val rect: Rect2D
 
-    fun contains(point: Point): Boolean
+    var parent: Widget?
+    val children: Iterable<Widget>
 
-    fun redraw()
+    fun onReady()
+    fun onRemoved()
+    fun onInput(event: UserInputEvent): UserInputEvent.Result
+
+    fun contains(point: Point): Boolean
+    fun contains(x: Int, y: Int): Boolean
+
+    fun redraw(ctx: RedrawContext)
+    fun repaint(ctx: RepaintContext)
 }
 
-interface DefaultBehaviorMixin : Widget {
+interface DefaultGeometryBehavior : Widget {
     override var x1: Int
         get() = rect.x1
         set(value) {
@@ -50,4 +63,5 @@ interface DefaultBehaviorMixin : Widget {
         }
 
     override fun contains(point: Point): Boolean = rect.contains(point)
+    override fun contains(x: Int, y: Int): Boolean = rect.contains(x, y)
 }
