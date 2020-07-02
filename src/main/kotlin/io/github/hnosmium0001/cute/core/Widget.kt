@@ -1,8 +1,8 @@
-package io.github.hnosmium0001.cute.view
+package io.github.hnosmium0001.cute.core
 
-import io.github.hnosmium0001.cute.view.render.RedrawContext
-import io.github.hnosmium0001.cute.view.render.RepaintContext
-import io.github.hnosmium0001.cute.view.event.UserInputEvent
+import io.github.hnosmium0001.cute.core.render.RedrawContext
+import io.github.hnosmium0001.cute.core.render.RepaintContext
+import io.github.hnosmium0001.cute.core.input.UserInputEvent
 
 interface Widget {
     var x1: Int

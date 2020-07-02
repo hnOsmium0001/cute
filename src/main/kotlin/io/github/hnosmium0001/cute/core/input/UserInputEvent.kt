@@ -1,9 +1,10 @@
-package io.github.hnosmium0001.cute.view.event
+package io.github.hnosmium0001.cute.core.input
 
-import io.github.hnosmium0001.cute.util.KeyCode
-import io.github.hnosmium0001.cute.util.MouseButton
-import io.github.hnosmium0001.cute.util.Scancode
 import io.github.hnosmium0001.cute.util.toInt
+
+inline class MouseButton(val id: Int)
+inline class KeyCode(val id: Int)
+inline class Scancode(val id: Int)
 
 sealed class UserInputEvent {
     class MousePressed(val mouseX: Int, val mouseY: Int, val button: MouseButton) : UserInputEvent()

@@ -1,8 +1,8 @@
-package io.github.hnosmium0001.cute.view
+package io.github.hnosmium0001.cute.core
 
-import io.github.hnosmium0001.cute.view.event.UserInputEvent
-import io.github.hnosmium0001.cute.view.render.RedrawContext
-import io.github.hnosmium0001.cute.view.render.RepaintContext
+import io.github.hnosmium0001.cute.core.input.UserInputEvent
+import io.github.hnosmium0001.cute.core.render.RedrawContext
+import io.github.hnosmium0001.cute.core.render.RepaintContext
 
 abstract class BaseWidget : Widget, DefaultGeometryBehavior {
     override val rect: Rect2D = Rect2D()

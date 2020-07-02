@@ -1,4 +1,4 @@
-package io.github.hnosmium0001.cute.view
+package io.github.hnosmium0001.cute.core
 
 class Point(
     var x: Int,

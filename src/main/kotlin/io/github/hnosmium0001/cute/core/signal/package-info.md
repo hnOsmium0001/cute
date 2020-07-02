@@ -1,4 +1,4 @@
-# Package io.github.hnosmium0001.cute.viewmodel.signal
+# Package io.github.hnosmium0001.cute.core.signal
 
 This package contains definitions for the Signals and Slots (abbreviated as S.S.) mechanism
 for *cute*.
