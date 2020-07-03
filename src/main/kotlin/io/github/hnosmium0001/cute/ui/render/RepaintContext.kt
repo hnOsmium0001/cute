@@ -1,9 +1,15 @@
-package io.github.hnosmium0001.cute.core.render
+package io.github.hnosmium0001.cute.ui.render
 
-import io.github.hnosmium0001.cute.core.Color
-import io.github.hnosmium0001.cute.core.Point
-import io.github.hnosmium0001.cute.core.Rect2D
-import io.github.hnosmium0001.cute.core.Texture
+import io.github.hnosmium0001.cute.ui.Color
+import io.github.hnosmium0001.cute.ui.Point
+import io.github.hnosmium0001.cute.ui.Rect2D
+import io.github.hnosmium0001.cute.ui.Texture
+
+interface RepaintProvider {
+    // "Ownership" of `RepaintContext` is transferred in these methods
+    fun startRepaint(): RepaintContext
+    fun finishRepaint(ctx: RepaintContext)
+}
 
 /**
  * Repaint is an event that let a particular portion of the widgets, specified by the event requester, to update some

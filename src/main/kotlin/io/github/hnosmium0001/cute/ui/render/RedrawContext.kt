@@ -1,9 +1,15 @@
-package io.github.hnosmium0001.cute.core.render
+package io.github.hnosmium0001.cute.ui.render
 
-import io.github.hnosmium0001.cute.core.Color
-import io.github.hnosmium0001.cute.core.Point
-import io.github.hnosmium0001.cute.core.RectangularSprite
-import io.github.hnosmium0001.cute.core.TriangularSprite
+import io.github.hnosmium0001.cute.ui.Color
+import io.github.hnosmium0001.cute.ui.Point
+import io.github.hnosmium0001.cute.ui.RectangularSprite
+import io.github.hnosmium0001.cute.ui.TriangularSprite
+
+interface RedrawProvider {
+    // "Ownership" of `RedrawContext` is transferred in these methods
+    fun startRedraw(): RedrawContext
+    fun finishRedraw(ctx: RedrawContext)
+}
 
 /**
  * Redraw is an event that completely rebuilds the draw commands buffer. All widgets in the tree will be iterated and
@@ -69,4 +75,4 @@ interface RedrawContext {
         p2: Point,
         sprite: RectangularSprite
     )
-}c
+}

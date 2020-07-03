@@ -1,4 +1,4 @@
-package io.github.hnosmium0001.cute.core
+package io.github.hnosmium0001.cute.ui
 
 class Point(
     var x: Int,
@@ -22,15 +22,28 @@ class Rect2D(
             y1 = value - height
         }
 
+    var p1: Point
+        get() = Point(x1, y1)
+        set(value) {
+            x1 = value.x
+            y1 = value.y
+        }
+    var p2: Point
+        get() = Point(x2, y2)
+        set(value) {
+            x2 = value.x
+            y2 = value.y
+        }
+
     fun contains(point: Point): Boolean {
         return contains(point.x, point.y)
     }
 
     fun contains(x: Int, y: Int): Boolean {
-        return x >= x1 &&
-            y >= y1 &&
-            x <= x2 &&
-            y <= y2
+        return x >= x1
+            && y >= y1
+            && x <= x2
+            && y <= y2
     }
 
     companion object {

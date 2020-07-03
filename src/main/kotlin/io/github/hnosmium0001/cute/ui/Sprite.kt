@@ -1,4 +1,4 @@
-package io.github.hnosmium0001.cute.core
+package io.github.hnosmium0001.cute.ui
 
 import net.minecraft.util.ResourceLocation
 

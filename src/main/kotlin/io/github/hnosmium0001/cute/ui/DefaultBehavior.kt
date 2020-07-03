@@ -1,33 +1,4 @@
-package io.github.hnosmium0001.cute.core
-
-import io.github.hnosmium0001.cute.core.render.RedrawContext
-import io.github.hnosmium0001.cute.core.render.RepaintContext
-import io.github.hnosmium0001.cute.core.input.UserInputEvent
-
-interface Widget {
-    var x1: Int
-    var y1: Int
-    var x2: Int
-    var y2: Int
-
-    var width: Int
-    var height: Int
-
-    val rect: Rect2D
-
-    var parent: Widget?
-    val children: Iterable<Widget>
-
-    fun onReady()
-    fun onRemoved()
-    fun onInput(event: UserInputEvent): UserInputEvent.Result
-
-    fun contains(point: Point): Boolean
-    fun contains(x: Int, y: Int): Boolean
-
-    fun redraw(ctx: RedrawContext)
-    fun repaint(ctx: RepaintContext)
-}
+package io.github.hnosmium0001.cute.ui
 
 interface DefaultGeometryBehavior : Widget {
     override var x1: Int
