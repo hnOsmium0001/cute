@@ -1,14 +1,19 @@
 package io.github.hnosmium0001.cute.ui
 
-import io.github.hnosmium0001.cute.ui.input.UserInputEvent
+import io.github.hnosmium0001.cute.ui.input.InputEvent
+import io.github.hnosmium0001.cute.ui.input.RawInputEvent
 import io.github.hnosmium0001.cute.ui.render.RedrawContext
 import io.github.hnosmium0001.cute.ui.render.RepaintContext
 import net.minecraft.client.Minecraft
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashSet
 
-class RootWidget : ContainerWidget, DefaultGeometryBehavior {
-    override val rect: Rect2D = Rect2D(0, 0, -1, -1)
+class RootWidget : ContainerWidget() {
+    init {
+        width = -1
+        height = -1
+    }
 
     override var root: RootWidget
         get() = this
@@ -25,7 +30,7 @@ class RootWidget : ContainerWidget, DefaultGeometryBehavior {
     override fun addChild(child: Widget) {
         children as MutableList
         children.add(child)
-        child.parent = this
+        child.parent = null
         child.root = this
     }
 
@@ -50,11 +55,8 @@ class RootWidget : ContainerWidget, DefaultGeometryBehavior {
         timedTasks.add(Triple(task, currentTime, delay))
     }
 
-    override fun onReady() {}
-    override fun onRemoved() {}
-
-    override fun onInput(event: UserInputEvent): UserInputEvent.Result {
-        var result = UserInputEvent.Result.IGNORED
+    override fun onInput(event: InputEvent): InputEvent.Result {
+        var result = InputEvent.Result.IGNORED
         for (child in children) {
             if (event.isEligible(child)) {
                 result = result.merge(child.onInput(event))
@@ -64,6 +66,14 @@ class RootWidget : ContainerWidget, DefaultGeometryBehavior {
             }
         }
         return result
+    }
+
+    internal val rawReceivers: MutableSet<Widget> = LinkedHashSet()
+
+    override fun onRawInput(event: RawInputEvent) {
+        for (receiver in rawReceivers) {
+            receiver.onRawInput(event)
+        }
     }
 
     fun render() {

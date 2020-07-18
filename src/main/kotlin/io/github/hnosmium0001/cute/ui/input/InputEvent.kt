@@ -3,41 +3,37 @@ package io.github.hnosmium0001.cute.ui.input
 import io.github.hnosmium0001.cute.ui.Widget
 import io.github.hnosmium0001.cute.util.toInt
 
-inline class MouseButton(val id: Int)
-inline class KeyCode(val id: Int)
-inline class Scancode(val id: Int)
-
-sealed class UserInputEvent {
+sealed class InputEvent {
     abstract fun isEligible(widget: Widget): Boolean
 
-    class MousePressed(val mouseX: Int, val mouseY: Int, val button: MouseButton) : UserInputEvent() {
+    class MousePressed(val mouseX: Int, val mouseY: Int, val button: MouseButton) : InputEvent() {
         override fun isEligible(widget: Widget): Boolean = widget.contains(mouseX, mouseY)
     }
 
-    class MouseReleased(val mouseX: Int, val mouseY: Int, val button: MouseButton) : UserInputEvent() {
+    class MouseReleased(val mouseX: Int, val mouseY: Int, val button: MouseButton) : InputEvent() {
         override fun isEligible(widget: Widget): Boolean = widget.contains(mouseX, mouseY)
     }
 
-    class MouseMoved(val mouseX: Int, val mouseY: Int) : UserInputEvent() {
+    class MouseMoved(val mouseX: Int, val mouseY: Int) : InputEvent() {
         override fun isEligible(widget: Widget): Boolean = true
     }
 
-    class ScrollWheel(val change: Double) : UserInputEvent() {
+    class ScrollWheel(val change: Double) : InputEvent() {
         // TODO
         override fun isEligible(widget: Widget): Boolean = true
     }
 
-    class KeyPressed(val keyCode: KeyCode, val scancode: Scancode) : UserInputEvent() {
+    class KeyPressed(val keyCode: KeyCode, val scancode: Scancode) : InputEvent() {
         // TODO
         override fun isEligible(widget: Widget): Boolean = true
     }
 
-    class KeyReleased(val keyCode: KeyCode, val scancode: Scancode) : UserInputEvent() {
+    class KeyReleased(val keyCode: KeyCode, val scancode: Scancode) : InputEvent() {
         // TODO
         override fun isEligible(widget: Widget): Boolean = true
     }
 
-    class CharTyped(val keyCode: KeyCode, val char: Char) : UserInputEvent() {
+    class CharTyped(val keyCode: KeyCode, val char: Char) : InputEvent() {
         // TODO
         override fun isEligible(widget: Widget): Boolean = true
     }
